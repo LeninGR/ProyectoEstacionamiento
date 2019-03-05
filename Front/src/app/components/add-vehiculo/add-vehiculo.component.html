@@ -1,0 +1,32 @@
+<div class="col">
+  <h2 class="text-center">Registrar Vehiculo</h2>
+  <form [formGroup]="addForm" (ngSubmit)="onSubmit()">
+
+      <div *ngIf="addForm.get('placaVehiculo').errors && addForm.get('placaVehiculo').dirty">
+          <p *ngIf="addForm.get('placaVehiculo').hasError('required')">Se requiere ingresar una Placa.</p>
+          <p *ngIf="addForm.get('placaVehiculo').hasError('minlength')">La placa debe contener mínimo 6 caracteres.</p>
+      </div>    
+
+    <div class="form-group">
+      <label for="placaVehiculo">Placa:</label>    
+      <input formControlName="placaVehiculo" placeholder="Placa" name="placaVehiculo" class="form-control" id="placaVehiculo" required>
+    </div>
+
+    <div class="form-group">
+      <label for="tipoVehiculo">Tipo Vehiculo:</label>
+      <select formControlName="tipoVehiculo" class="form-control" name="tipoVehiculo" id="tipoVehiculo" [(ngModel)]="tipoVehiculo">
+          <option value="0">---Seleccione---</option> <!-- not selected / blank option -->
+          <option value="1">Carro</option> <!-- interpolation -->
+          <option value="2">Moto</option>
+      </select>        
+    </div>
+
+    <div class="form-group"  *ngIf="tipoVehiculo == 2">
+      <label for="cilindrajeMoto">Cilindraje:</label>
+      <input type="cilindrajeMoto" formControlName="cilindrajeMoto" placeholder="Cilindraje" name="cilindrajeMoto" class="form-control" id="cilindrajeMoto" required>
+    </div>
+
+    <button class="btn btn-success">Registrar</button>
+    <button class="btn btn-primary" routerLink="list-vehiculo">Regresar</button>
+  </form>
+</div>

@@ -1,0 +1,38 @@
+<div class="col">
+  <h2>Listado de Vehículos Parqueados</h2>
+  <button class="btn btn-primary" (click)="addVehiculo()">Registrar Vehículo</button>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th class="hidden">Id</th>
+        <th>Placa</th>
+        <th>Cilindraje</th>
+        <th>Fecha Entrada</th>
+        <th>Fecha Salida</th>
+        <th>Estado</th>
+        <th>Tiempo Servicio</th>
+        <th>Valor del Servicio</th>
+        <th>Acción</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vehiculo of vehiculos">
+        <td class="hidden">{{ vehiculo.id }}</td>
+        <td>{{ vehiculo.placaVehiculo }}</td>
+        <td>{{ vehiculo.cilindrajeMoto }}</td>
+        <td>{{ vehiculo.fechaEntrada | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+        <td>{{ vehiculo.fechaSalida | date:'yyyy-MM-dd HH:mm:ss' }}</td>
+        <td>{{ vehiculo.estado }}</td>
+        <td>{{ vehiculo.tiempoServicio }}</td>
+        <td>{{ vehiculo.valorServicio }}</td>
+        <!-- <div *ngIf=vehiculo.estadoPendiente> -->
+        <td>
+          <button [disabled]="vehiculo.estadoPendiente" class="btn btn-success" (click)="registroSalidaVehiculo(vehiculo)">
+            Salida
+          </button>
+        </td>
+      <!-- </div> -->
+      </tr>
+    </tbody>
+  </table>
+</div>
